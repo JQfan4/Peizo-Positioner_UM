@@ -1,0 +1,67 @@
+#Able to print the time program had run
+et = time.time()
+elapsed_time = et - st
+print ('CPU execution time code', time.process_time(), 'seconds')
+print('Execution time:', elapsed_time, 'seconds')
+
+#Output array list for x and y to observe and calculating 
+x1 = x*0.01375
+xd = np.delete(x1, 0)
+print('x', xd)
+y2 = y*0.01375
+yd = np.delete(y2, 0)
+print('y',yd)
+ti = .2
+displacement = (x1,y2)
+
+#Output 3D graph time vs displacements
+ax = plt.axes(projection="3d")
+ax.plot(xd,yd,ti)
+plt.show()
+#Output 2D Graph time & displacements 
+plt.plot(xd,yd,ti)
+plt.xlabel('time')
+plt.ylabel('displacement')
+plt.title("sec")
+plt.show()
+
+#Step outprint section
+x_steps = np.count_nonzero(xd)
+y_steps = np.count_nonzero(yd)
+print(x_steps, y_steps)
+
+#Create an array List for Steps
+steps = list(range(1,x_steps+1))
+print(steps)   
+
+#Steps vs Displacement graph for X in scatter
+plt.scatter(steps,xd)
+plt.xlabel('step')
+plt.ylabel('x')
+plt.title("stepsx")
+plt.show()
+
+#Steps vs Displacement graph for Y in scatter
+plt.scatter(steps,yd)
+plt.xlabel('step')
+plt.ylabel('y')
+plt.title("stepsy")
+plt.show()
+
+#Steps vs Displacement graph for X&Y in scatter
+plt.scatter(xd,yd)
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title("step-xy")
+plt.show()
+
+#Use sources from the output array list here to print the velocity
+dis = 0 
+sp = np.array([])
+xa = np.array([])
+ya = np.array([6)
+for i in range(len(xa)-2):
+    dis += sqrt((xa[i+1] - xa[i])**2 + (ya[i+1]-ya[i])**2)
+    
+print('dis', dis)
+print('d/t', dis/ti)
