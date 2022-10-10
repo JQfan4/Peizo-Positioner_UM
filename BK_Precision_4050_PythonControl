@@ -1,0 +1,30 @@
+import pyvisa as visa
+import time
+import cv2
+import sys
+import usb.core
+import usb.util
+
+
+#BK Precision machine common section
+rm = visa.ResourceManager()
+
+#use li = to print the source you use
+li = rm.list_resources()
+print(li)
+
+#use vi = to control the mechine
+vi = rm.open_resource('USB0::0xF4ED::0xEE3A::388C14124::0::INSTR') #USB0::0xF4ED::0xEE3A::388C14124::0::INSTR <-This is the source name I have
+
+#Channel and mechine learning
+print(vi.query("*idn?"))
+print("Configuring C1") 
+vi.write("c1:bswv frq, 10") #set the frequency of channel 1
+vi.write("c1:bswv wvtp,ramp") #set the type of waveform
+vi.write("c1:bswv amp, 4") #set the amplitude
+vi.write("c1:bswv sym, 0") #set the amplitude
+vi.write("c1:bswv duty, 75") #duty cycle
+vi.write("c1:bswv dlay, 1") #brust delay for 1 second
+vi.write("c1:output on") #run on
+time.sleep(5)          #time control 
+vi.write("c1:output off") #run off
